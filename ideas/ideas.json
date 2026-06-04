@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-06-05",
+  "last_updated": "2026-06-04T20:43:51.763760",
   "ideas": [
     {
       "id": 1,
@@ -39,27 +39,14 @@
       "added_at": "2025-06-05"
     },
     {
-      "id": 4,
-      "title": "GitHub Stars Tracker",
-      "description": "Track GitHub repos by topic daily, alert when a new repo is trending in AI/automation space",
-      "source": "HackerNews",
-      "demand": 7,
+      "id": 8,
+      "title": "Meeting Notes Formatter",
+      "description": "Paste raw meeting notes, Claude formats into action items + decisions + owners automatically",
+      "source": "Reddit r/productivity",
+      "demand": 8,
       "buildability": 9,
       "value": 7,
-      "score": 7.6,
-      "status": "built",
-      "added_at": "2025-06-05",
-      "script_path": "scripts/day1b_github_stars_tracker.py"
-    },
-    {
-      "id": 5,
-      "title": "Job Board Scraper",
-      "description": "Scrape jobs from HN 'Who is hiring' monthly posts, filter by stack/role, save to JSON",
-      "source": "HackerNews",
-      "demand": 8,
-      "buildability": 8,
-      "value": 7,
-      "score": 7.7,
+      "score": 8.0,
       "status": "pending",
       "added_at": "2025-06-05"
     },
@@ -76,6 +63,18 @@
       "added_at": "2025-06-05"
     },
     {
+      "id": 5,
+      "title": "Job Board Scraper",
+      "description": "Scrape jobs from HN 'Who is hiring' monthly posts, filter by stack/role, save to JSON",
+      "source": "HackerNews",
+      "demand": 8,
+      "buildability": 8,
+      "value": 7,
+      "score": 7.7,
+      "status": "pending",
+      "added_at": "2025-06-05"
+    },
+    {
       "id": 7,
       "title": "Twitter/X AI Buzz Monitor",
       "description": "Search X daily for trending AI startups/tools being discussed, save top 10 with engagement scores",
@@ -88,16 +87,17 @@
       "added_at": "2025-06-05"
     },
     {
-      "id": 8,
-      "title": "Meeting Notes Formatter",
-      "description": "Paste raw meeting notes, Claude formats into action items + decisions + owners automatically",
-      "source": "Reddit r/productivity",
-      "demand": 8,
+      "id": 4,
+      "title": "GitHub Stars Tracker",
+      "description": "Track GitHub repos by topic daily, alert when a new repo is trending in AI/automation space",
+      "source": "HackerNews",
+      "demand": 7,
       "buildability": 9,
       "value": 7,
-      "score": 8.0,
-      "status": "pending",
-      "added_at": "2025-06-05"
+      "score": 7.6,
+      "status": "built",
+      "added_at": "2025-06-05",
+      "script_path": "scripts/day1b_github_stars_tracker.py"
     }
   ]
 }

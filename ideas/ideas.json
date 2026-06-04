@@ -10,8 +10,9 @@
       "buildability": 9,
       "value": 8,
       "score": 8.7,
-      "status": "building",
-      "added_at": "2025-06-05"
+      "status": "built",
+      "added_at": "2025-06-05",
+      "script_path": "scripts/day1_hn_pain_scraper.py"
     },
     {
       "id": 2,
@@ -46,8 +47,9 @@
       "buildability": 9,
       "value": 7,
       "score": 7.6,
-      "status": "pending",
-      "added_at": "2025-06-05"
+      "status": "built",
+      "added_at": "2025-06-05",
+      "script_path": "scripts/day1b_github_stars_tracker.py"
     },
     {
       "id": 5,

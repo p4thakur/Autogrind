@@ -1,4 +1,101 @@
 {
-  "last_updated": "",
-  "ideas": []
+  "last_updated": "2025-06-05",
+  "ideas": [
+    {
+      "id": 1,
+      "title": "HN Pain Point Scraper",
+      "description": "Scrape HackerNews 'Ask HN' posts daily, extract pain points people mention, summarize top 5 with Claude",
+      "source": "HackerNews API",
+      "demand": 9,
+      "buildability": 9,
+      "value": 8,
+      "score": 8.7,
+      "status": "building",
+      "added_at": "2025-06-05"
+    },
+    {
+      "id": 2,
+      "title": "Gmail Receipt Organizer",
+      "description": "Scan Gmail for receipts/invoices, extract amounts and vendors, export to CSV for tax time",
+      "source": "Reddit r/freelance",
+      "demand": 9,
+      "buildability": 6,
+      "value": 9,
+      "score": 8.1,
+      "status": "pending",
+      "added_at": "2025-06-05"
+    },
+    {
+      "id": 3,
+      "title": "Reddit Trend Monitor",
+      "description": "Monitor specific subreddits for keywords (your product, competitors, pain points), send daily digest",
+      "source": "Reddit",
+      "demand": 8,
+      "buildability": 8,
+      "value": 8,
+      "score": 8.0,
+      "status": "pending",
+      "added_at": "2025-06-05"
+    },
+    {
+      "id": 4,
+      "title": "GitHub Stars Tracker",
+      "description": "Track GitHub repos by topic daily, alert when a new repo is trending in AI/automation space",
+      "source": "HackerNews",
+      "demand": 7,
+      "buildability": 9,
+      "value": 7,
+      "score": 7.6,
+      "status": "pending",
+      "added_at": "2025-06-05"
+    },
+    {
+      "id": 5,
+      "title": "Job Board Scraper",
+      "description": "Scrape jobs from HN 'Who is hiring' monthly posts, filter by stack/role, save to JSON",
+      "source": "HackerNews",
+      "demand": 8,
+      "buildability": 8,
+      "value": 7,
+      "score": 7.7,
+      "status": "pending",
+      "added_at": "2025-06-05"
+    },
+    {
+      "id": 6,
+      "title": "Inbox Zero Digest",
+      "description": "Summarize unread emails daily into 5 bullet points so you never miss anything important",
+      "source": "Reddit r/productivity",
+      "demand": 9,
+      "buildability": 6,
+      "value": 8,
+      "score": 7.9,
+      "status": "pending",
+      "added_at": "2025-06-05"
+    },
+    {
+      "id": 7,
+      "title": "Twitter/X AI Buzz Monitor",
+      "description": "Search X daily for trending AI startups/tools being discussed, save top 10 with engagement scores",
+      "source": "Your idea",
+      "demand": 8,
+      "buildability": 7,
+      "value": 8,
+      "score": 7.7,
+      "status": "pending",
+      "added_at": "2025-06-05"
+    },
+    {
+      "id": 8,
+      "title": "Meeting Notes Formatter",
+      "description": "Paste raw meeting notes, Claude formats into action items + decisions + owners automatically",
+      "source": "Reddit r/productivity",
+      "demand": 8,
+      "buildability": 9,
+      "value": 7,
+      "score": 8.0,
+      "status": "pending",
+      "added_at": "2025-06-05"
+    }
+  ]
 }

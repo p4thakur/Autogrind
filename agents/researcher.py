@@ -50,19 +50,15 @@ AUTOMATION_KEYWORDS = [
     "batch", "integrate", "sync", "trigger", "notify", "alert", "monitor"
 ]
 
+# Single query using OR — 1 API call per run instead of 10
 X_QUERIES = [
-    # Pain signals
-    "doing this manually every day -is:retweet lang:en",
-    "still doing this by hand -is:retweet lang:en",
-    "waste so much time manually -is:retweet lang:en",
-    # Demand / buying signals
-    "wish there was a tool -is:retweet lang:en",
-    "would be great if someone built -is:retweet lang:en",
-    "would pay for a tool that -is:retweet lang:en",
-    "someone please build -is:retweet lang:en",
-    "take my money if someone builds -is:retweet lang:en",
-    "looking for a tool that can -is:retweet lang:en",
-    "does anyone know a tool to automate -is:retweet lang:en",
+    (
+        '("wish there was a tool" OR "would pay for a tool" OR "someone should build" '
+        'OR "doing this manually every day" OR "still doing this by hand" '
+        'OR "take my money if" OR "looking for a tool that" '
+        'OR "would be great if someone built" OR "waste so much time manually") '
+        '-is:retweet lang:en'
+    )
 ]
 
 HN_ITEM_URL = "https://hacker-news.firebaseio.com/v0/item/{}.json"

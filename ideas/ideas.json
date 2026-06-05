@@ -1,20 +1,20 @@
 {
-  "last_updated": "2026-06-05T10:54:55.026917",
+  "last_updated": "2026-06-05T11:00:48.449113",
   "ideas": [
     {
       "id": 9,
-      "title": "Overdue Invoice WhatsApp Reminder",
-      "description": "Small businesses manually send WhatsApp payment reminders when accounting auto-reminders fail. Script reads a CSV of overdue invoices and generates ready-to-send WhatsApp messages with client name, amount, due date.",
-      "source": "HackerNews Ask HN",
-      "source_url": "https://news.ycombinator.com/item?id=47638685",
-      "demand": 9,
+      "title": "Local Repo Secret Scanner",
+      "description": "Scans your local git repos for hardcoded API keys, tokens and secrets across all files and git history. 28M secrets leaked on GitHub in 2025, 64% still active years later. Can't manually check hundreds of files.",
+      "source": "GitGuardian State of Secrets Sprawl 2026 / HackerNews",
+      "source_url": "https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/",
+      "demand": 10,
       "buildability": 9,
-      "value": 9,
-      "score": 9.0,
+      "value": 10,
+      "score": 9.7,
       "status": "built",
-      "added_at": "2026-06-05T10:54:16.425216",
-      "script_path": "scripts/day2_invoice_whatsapp_reminder.py",
-      "built_at": "2026-06-05T10:54:55.026901"
+      "added_at": "2026-06-05T10:59:48.245440",
+      "script_path": "scripts/day2_secret_scanner.py",
+      "built_at": "2026-06-05T11:00:48.449099"
     },
     {
       "id": 1,

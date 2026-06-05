@@ -1,6 +1,21 @@
 {
-  "last_updated": "2026-06-05T09:50:54.136788",
+  "last_updated": "2026-06-05T10:54:55.026917",
   "ideas": [
+    {
+      "id": 9,
+      "title": "Overdue Invoice WhatsApp Reminder",
+      "description": "Small businesses manually send WhatsApp payment reminders when accounting auto-reminders fail. Script reads a CSV of overdue invoices and generates ready-to-send WhatsApp messages with client name, amount, due date.",
+      "source": "HackerNews Ask HN",
+      "source_url": "https://news.ycombinator.com/item?id=47638685",
+      "demand": 9,
+      "buildability": 9,
+      "value": 9,
+      "score": 9.0,
+      "status": "built",
+      "added_at": "2026-06-05T10:54:16.425216",
+      "script_path": "scripts/day2_invoice_whatsapp_reminder.py",
+      "built_at": "2026-06-05T10:54:55.026901"
+    },
     {
       "id": 1,
       "title": "HN Pain Point Scraper",

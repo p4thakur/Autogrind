@@ -105,3 +105,17 @@ python run.py
 ---
 
 *Built daily with Claude 🤖 | One automation per day*
+
+---
+
+### Day 2 — Overdue Invoice WhatsApp Reminder
+**File:** `scripts/day2_invoice_whatsapp_reminder.py`
+**Score:** 9.0 ⭐⭐⭐⭐⭐
+
+Small businesses manually send WhatsApp payment reminders when accounting software auto-reminders get ignored. This script reads your `invoices.csv`, calculates how overdue each invoice is, picks the right tone (gentle/firm/urgent), and generates ready-to-click WhatsApp links with pre-filled messages.
+
+**Run it:**
+```bash
+python scripts/day2_invoice_whatsapp_reminder.py
+```
+**Output:** `whatsapp_reminders_YYYYMMDD.txt` + clickable wa.me links

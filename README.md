@@ -114,6 +114,21 @@ python run.py
 
 Small businesses manually send WhatsApp payment reminders when accounting software auto-reminders get ignored. This script reads your `invoices.csv`, calculates how overdue each invoice is, picks the right tone (gentle/firm/urgent), and generates ready-to-click WhatsApp links with pre-filled messages.
 
+**How to use:**
+1. Run the script once — it creates a sample `invoices.csv` automatically
+2. Edit `invoices.csv` with your real client data:
+```
+invoice_id, client_name, phone,        amount, currency, due_date
+INV-001,    John Smith,  14155551234,  5000,   $,        2026-05-15
+```
+3. Run again — it generates clickable WhatsApp links per client
+4. Click any link → WhatsApp opens with the message pre-filled → hit send
+
+**Tone logic:**
+- 😊 **Gentle** — 1 to 7 days overdue
+- ⏰ **Firm** — 8 to 21 days overdue
+- 🚨 **Urgent** — 22+ days overdue
+
 **Run it:**
 ```bash
 python scripts/day2_invoice_whatsapp_reminder.py

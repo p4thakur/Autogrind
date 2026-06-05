@@ -1,0 +1,38 @@
+name: Daily Autogrind Research
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # 6am UTC = 11:30am IST daily
+  workflow_dispatch:        # also allows manual trigger
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests requests-oauthlib
+
+      - name: Run researcher
+        env:
+          X_API_KEY:        ${{ secrets.X_API_KEY }}
+          X_API_SECRET:     ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN:   ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET:  ${{ secrets.X_ACCESS_SECRET }}
+        run: python agents/researcher.py
+
+      - name: Commit updated ideas.json
+        run: |
+          git config user.name "Autogrind Bot"
+          git config user.email "autogrind@bot.com"
+          git add ideas/ideas.json
+          git diff --staged --quiet || git commit -m "🔍 Daily research update $(date +'%Y-%m-%d')"
+          git push

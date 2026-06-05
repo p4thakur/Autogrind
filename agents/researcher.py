@@ -26,27 +26,43 @@ except ImportError:
 IDEAS_FILE = "ideas/ideas.json"
 
 # Pain + automation signal words
+# 😤 Pain signals — someone is suffering
 PAIN_KEYWORDS = [
-    "frustrated", "annoying", "manually", "hate doing", "takes forever",
-    "wish there was", "pain point", "tedious", "repetitive", "waste time",
-    "hours doing", "no tool", "need a way", "tired of", "killing me",
-    "nightmare", "struggling", "can't find", "why isn't there",
-    "someone should build", "would pay for", "does anyone else", "every single day",
-    "automate this", "sick of", "still doing this", "by hand"
+    "manually", "by hand", "every day", "waste time", "takes forever",
+    "sick of", "tired of", "so tedious", "so annoying", "kills me",
+    "hours on", "hate doing", "boring task", "repetitive", "nightmare",
+    "still doing this", "do this daily", "every single"
 ]
 
+# 💡 Demand signals — someone wants a solution
+DEMAND_KEYWORDS = [
+    "wish there was", "would be great if", "someone should build",
+    "would pay for", "would love a tool", "need a tool", "if only",
+    "does anyone know a tool", "is there a way to automate",
+    "i would use", "i'll pay", "take my money", "please build",
+    "would be useful", "would be helpful", "would save so much time",
+    "anyone built", "has anyone made", "looking for a tool"
+]
+
+# kept for GitHub/HN filtering only
 AUTOMATION_KEYWORDS = [
     "automate", "automation", "script", "workflow", "schedule",
     "batch", "integrate", "sync", "trigger", "notify", "alert", "monitor"
 ]
 
 X_QUERIES = [
-    "hate doing manually automate -is:retweet lang:en",
-    "wish there was a tool automate -is:retweet lang:en",
-    "still doing this manually script -is:retweet lang:en",
-    "why is there no tool automate workflow -is:retweet lang:en",
-    "hours wasted manually automate -is:retweet lang:en",
-    "someone should build tool automate -is:retweet lang:en",
+    # Pain signals
+    "doing this manually every day -is:retweet lang:en",
+    "still doing this by hand -is:retweet lang:en",
+    "waste so much time manually -is:retweet lang:en",
+    # Demand / buying signals
+    "wish there was a tool -is:retweet lang:en",
+    "would be great if someone built -is:retweet lang:en",
+    "would pay for a tool that -is:retweet lang:en",
+    "someone please build -is:retweet lang:en",
+    "take my money if someone builds -is:retweet lang:en",
+    "looking for a tool that can -is:retweet lang:en",
+    "does anyone know a tool to automate -is:retweet lang:en",
 ]
 
 HN_ITEM_URL = "https://hacker-news.firebaseio.com/v0/item/{}.json"
@@ -73,9 +89,9 @@ def pain_score(text, upvotes=0, comments=0):
 
 def is_relevant(text):
     t = text.lower()
-    has_pain = any(kw in t for kw in PAIN_KEYWORDS)
-    has_automation = any(kw in t for kw in AUTOMATION_KEYWORDS)
-    return has_pain and has_automation
+    has_pain   = any(kw in t for kw in PAIN_KEYWORDS)
+    has_demand = any(kw in t for kw in DEMAND_KEYWORDS)
+    return has_pain or has_demand
 
 def load_ideas():
     with open(IDEAS_FILE) as f:

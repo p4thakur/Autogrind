@@ -1,64 +1,38 @@
 """
-Autogrind - Researcher Agent v3
+Autogrind - Researcher Agent v4
 ---------------------------------
 Sources:
-- Twitter/X  → real-time pain points
-- HackerNews → developer pain points
-- GitHub Issues → feature requests
+- HackerNews Ask HN  (free, no auth)
+- GitHub Issues      (free, no auth)
+- Claude web search  (done manually each session)
 
-Credentials stored as env vars or GitHub Secrets.
+Run daily by calling: python agents/researcher.py
 """
 
-import os
 import json
 import time
 import urllib.request
-import urllib.parse
 from datetime import datetime
-
-try:
-    import requests
-    from requests_oauthlib import OAuth1
-    HAS_REQUESTS = True
-except ImportError:
-    HAS_REQUESTS = False
 
 IDEAS_FILE = "ideas/ideas.json"
 
-# Pain + automation signal words
-# 😤 Pain signals — someone is suffering
 PAIN_KEYWORDS = [
     "manually", "by hand", "every day", "waste time", "takes forever",
-    "sick of", "tired of", "so tedious", "so annoying", "kills me",
-    "hours on", "hate doing", "boring task", "repetitive", "nightmare",
-    "still doing this", "do this daily", "every single"
+    "sick of", "tired of", "tedious", "annoying", "kills me",
+    "hours on", "hate doing", "repetitive", "nightmare", "still doing this"
 ]
 
-# 💡 Demand signals — someone wants a solution
 DEMAND_KEYWORDS = [
     "wish there was", "would be great if", "someone should build",
     "would pay for", "would love a tool", "need a tool", "if only",
-    "does anyone know a tool", "is there a way to automate",
-    "i would use", "i'll pay", "take my money", "please build",
-    "would be useful", "would be helpful", "would save so much time",
-    "anyone built", "has anyone made", "looking for a tool"
+    "is there a way to automate", "i would use", "take my money",
+    "please build", "would save so much time", "anyone built",
+    "has anyone made", "looking for a tool"
 ]
 
-# kept for GitHub/HN filtering only
 AUTOMATION_KEYWORDS = [
     "automate", "automation", "script", "workflow", "schedule",
     "batch", "integrate", "sync", "trigger", "notify", "alert", "monitor"
-]
-
-# Single query using OR — 1 API call per run instead of 10
-X_QUERIES = [
-    (
-        '("wish there was a tool" OR "would pay for a tool" OR "someone should build" '
-        'OR "doing this manually every day" OR "still doing this by hand" '
-        'OR "take my money if" OR "looking for a tool that" '
-        'OR "would be great if someone built" OR "waste so much time manually") '
-        '-is:retweet lang:en'
-    )
 ]
 
 HN_ITEM_URL = "https://hacker-news.firebaseio.com/v0/item/{}.json"
@@ -67,7 +41,7 @@ HN_ASK_URL  = "https://hacker-news.firebaseio.com/v0/askstories.json"
 # ── Helpers ───────────────────────────────────────────────────────────────
 def fetch_json(url, headers=None):
     req = urllib.request.Request(url)
-    req.add_header("User-Agent", "Autogrind/3.0")
+    req.add_header("User-Agent", "Autogrind/4.0")
     if headers:
         for k, v in headers.items():
             req.add_header(k, v)
@@ -80,8 +54,9 @@ def fetch_json(url, headers=None):
 
 def pain_score(text, upvotes=0, comments=0):
     t = text.lower()
-    hits = sum(1 for kw in PAIN_KEYWORDS if kw in t)
-    return round((hits * 2) + (upvotes // 20) + (comments // 5), 2)
+    pain   = sum(1 for kw in PAIN_KEYWORDS if kw in t)
+    demand = sum(1 for kw in DEMAND_KEYWORDS if kw in t)
+    return round((pain * 2) + (demand * 3) + (upvotes // 20) + (comments // 5), 2)
 
 def is_relevant(text):
     t = text.lower()
@@ -127,70 +102,35 @@ def make_idea(title, source, url, upvotes, comments, pain, idea_id):
         "added_at":     datetime.now().isoformat()
     }
 
-# ── Twitter/X ─────────────────────────────────────────────────────────────
-def scrape_twitter():
-    print("\n🐦 Twitter/X")
+def add_idea_manually(title, description, source, source_url,
+                      demand, buildability, value):
+    """
+    Called by Claude after doing web research.
+    Claude finds pain points, scores them, and adds via this function.
+    """
+    data = load_ideas()
+    if is_duplicate(title, data["ideas"]):
+        print(f"  ⚠️  Duplicate skipped: {title[:50]}")
+        return None
 
-    if not HAS_REQUESTS:
-        print("  ⚠️  requests library not installed. Run: pip install requests requests-oauthlib")
-        return []
-
-    api_key     = os.getenv("X_API_KEY")
-    api_secret  = os.getenv("X_API_SECRET")
-    acc_token   = os.getenv("X_ACCESS_TOKEN")
-    acc_secret  = os.getenv("X_ACCESS_SECRET")
-
-    if not all([api_key, api_secret, acc_token, acc_secret]):
-        print("  ⚠️  Missing X credentials. Set env vars:")
-        print("       X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_SECRET")
-        return []
-
-    auth = OAuth1(api_key, api_secret, acc_token, acc_secret)
-    found = []
-    seen = set()
-
-    for query in X_QUERIES:
-        try:
-            resp = requests.get(
-                "https://api.twitter.com/2/tweets/search/recent",
-                auth=auth,
-                params={
-                    "query": query,
-                    "max_results": 10,
-                    "tweet.fields": "public_metrics,created_at"
-                },
-                timeout=10
-            )
-            if resp.status_code != 200:
-                print(f"  ⚠️  X API error {resp.status_code}: {resp.text[:80]}")
-                continue
-
-            for tweet in resp.json().get("data", []):
-                tid = tweet["id"]
-                if tid in seen:
-                    continue
-                seen.add(tid)
-                text    = tweet.get("text", "")
-                metrics = tweet.get("public_metrics", {})
-                likes   = metrics.get("like_count", 0)
-                replies = metrics.get("reply_count", 0)
-                ps      = pain_score(text, likes, replies)
-                if ps > 0 and is_relevant(text):
-                    found.append({
-                        "raw_title":   text[:80],
-                        "url":         f"https://x.com/i/web/status/{tid}",
-                        "source":      "Twitter/X",
-                        "upvotes":     likes,
-                        "comments":    replies,
-                        "pain_signal": ps
-                    })
-            time.sleep(1)
-        except Exception as e:
-            print(f"  ⚠️  {e}")
-
-    found.sort(key=lambda x: x["pain_signal"], reverse=True)
-    print(f"  ✅ {len(found)} signals")
-    return found[:10]
+    idea = {
+        "id":           next_id(data),
+        "title":        title[:80],
+        "description":  description,
+        "source":       source,
+        "source_url":   source_url,
+        "demand":       demand,
+        "buildability": buildability,
+        "value":        value,
+        "score":        round((demand * 0.4) + (buildability * 0.3) + (value * 0.3), 2),
+        "status":       "pending",
+        "added_at":     datetime.now().isoformat()
+    }
+    data["ideas"].append(idea)
+    data["ideas"].sort(key=lambda x: x["score"], reverse=True)
+    save_ideas(data)
+    print(f"  + [{idea['score']}] {idea['title']}")
+    return idea
 
 # ── HackerNews ────────────────────────────────────────────────────────────
 def scrape_hackernews():
@@ -206,7 +146,9 @@ def scrape_hackernews():
         text  = item.get("text", "") or ""
         if not is_relevant(title + " " + text):
             continue
-        ps = pain_score(title + " " + text, item.get("score", 0), item.get("descendants", 0))
+        ps = pain_score(title + " " + text,
+                        item.get("score", 0),
+                        item.get("descendants", 0))
         if ps > 1:
             found.append({
                 "raw_title":   title,
@@ -262,11 +204,16 @@ def scrape_github():
 # ── Main ──────────────────────────────────────────────────────────────────
 def run():
     print("=" * 50)
-    print("🔍 AUTOGRIND RESEARCHER v3")
+    print("🔍 AUTOGRIND RESEARCHER v4")
     print(f"   {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+    print("   Sources: HackerNews + GitHub Issues")
+    print("   + Claude web research (done in session)")
     print("=" * 50)
 
-    signals = scrape_twitter() + scrape_hackernews() + scrape_github()
+    hn_signals     = scrape_hackernews()
+    github_signals = scrape_github()
+
+    signals = hn_signals + github_signals
     signals.sort(key=lambda x: x["pain_signal"], reverse=True)
     print(f"\n📊 Total signals: {len(signals)}")
 
@@ -278,7 +225,8 @@ def run():
         if is_duplicate(s["raw_title"], data["ideas"]):
             continue
         idea = make_idea(s["raw_title"], s["source"], s["url"],
-                         s["upvotes"], s["comments"], s["pain_signal"], next_id(data))
+                         s["upvotes"], s["comments"],
+                         s["pain_signal"], next_id(data))
         data["ideas"].append(idea)
         print(f"  + [{idea['score']}] {idea['title'][:60]}")
         added += 1

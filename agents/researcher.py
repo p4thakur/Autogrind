@@ -41,12 +41,12 @@ AUTOMATION_KEYWORDS = [
 ]
 
 X_QUERIES = [
-    "I hate manually doing -is:retweet lang:en",
-    "wish there was a tool for -is:retweet lang:en",
-    "still doing this manually -is:retweet lang:en",
-    "someone please automate -is:retweet lang:en",
-    "why is there no tool to -is:retweet lang:en",
-    "automate this please -is:retweet lang:en",
+    "hate doing manually automate -is:retweet lang:en",
+    "wish there was a tool automate -is:retweet lang:en",
+    "still doing this manually script -is:retweet lang:en",
+    "why is there no tool automate workflow -is:retweet lang:en",
+    "hours wasted manually automate -is:retweet lang:en",
+    "someone should build tool automate -is:retweet lang:en",
 ]
 
 HN_ITEM_URL = "https://hacker-news.firebaseio.com/v0/item/{}.json"
@@ -73,7 +73,9 @@ def pain_score(text, upvotes=0, comments=0):
 
 def is_relevant(text):
     t = text.lower()
-    return any(kw in t for kw in PAIN_KEYWORDS + AUTOMATION_KEYWORDS)
+    has_pain = any(kw in t for kw in PAIN_KEYWORDS)
+    has_automation = any(kw in t for kw in AUTOMATION_KEYWORDS)
+    return has_pain and has_automation
 
 def load_ideas():
     with open(IDEAS_FILE) as f:

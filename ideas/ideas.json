@@ -1,103 +1,111 @@
 {
-  "last_updated": "2026-06-04T20:43:51.763760",
+  "last_updated": "2026-06-05T09:50:54.136788",
   "ideas": [
     {
       "id": 1,
       "title": "HN Pain Point Scraper",
-      "description": "Scrape HackerNews 'Ask HN' posts daily, extract pain points people mention, summarize top 5 with Claude",
-      "source": "HackerNews API",
+      "description": "Scrapes HackerNews Ask HN posts, finds pain points, saves top 10 to JSON",
+      "source": "Original",
+      "source_url": "",
       "demand": 9,
       "buildability": 9,
       "value": 8,
       "score": 8.7,
       "status": "built",
-      "added_at": "2025-06-05",
-      "script_path": "scripts/day1_hn_pain_scraper.py"
+      "script_path": "scripts/day1_hn_pain_scraper.py",
+      "added_at": "2026-06-05"
     },
     {
-      "id": 2,
+      "id": 5,
+      "title": "Workflow Time Audit",
+      "description": "Track your daily tasks for a week, auto-identify which ones are repetitive and how much time they waste. Outputs a ranked report of what to automate first.",
+      "source": "IndieHackers",
+      "source_url": "https://www.indiehackers.com/post/build-a-recurring-painkiller-not-a-nice-to-have-XQ8OqrDttazYyScZxbBw",
+      "demand": 9,
+      "buildability": 8,
+      "value": 9,
+      "score": 8.7,
+      "status": "pending",
+      "added_at": "2026-06-05"
+    },
+    {
+      "id": 7,
+      "title": "Auto Knowledge Base Builder",
+      "description": "Feed it a folder of Slack exports or email threads \u2014 it extracts repeated Q&As and builds a searchable markdown knowledge base automatically.",
+      "source": "IndieHackers ($1M ARR story)",
+      "source_url": "https://www.indiehackers.com/post/tech/building-an-autonomous-business-and-closing-in-on-1m-arr-O3jTDG26L7DBGVewezUH",
+      "demand": 9,
+      "buildability": 7,
+      "value": 9,
+      "score": 8.5,
+      "status": "pending",
+      "added_at": "2026-06-05"
+    },
+    {
+      "id": 6,
+      "title": "Screenshot Automation Script",
+      "description": "Auto-capture screenshots of any list of URLs on a schedule. Save to folder with timestamps. Useful for SEO reports, QA, competitor monitoring.",
+      "source": "IndieHackers (PeekShot founder story)",
+      "source_url": "https://www.indiehackers.com/post/i-built-peekshot-to-automate-website-screenshots-now-i-save-97-of-my-time-eznUAy0X9P6r3TLqcB0x",
+      "demand": 8,
+      "buildability": 9,
+      "value": 8,
+      "score": 8.3,
+      "status": "pending",
+      "added_at": "2026-06-05"
+    },
+    {
+      "id": 3,
       "title": "Gmail Receipt Organizer",
-      "description": "Scan Gmail for receipts/invoices, extract amounts and vendors, export to CSV for tax time",
+      "description": "Scan Gmail for receipts/invoices, extract amounts + vendors, export CSV for tax time",
       "source": "Reddit r/freelance",
+      "source_url": "",
       "demand": 9,
       "buildability": 6,
       "value": 9,
       "score": 8.1,
       "status": "pending",
-      "added_at": "2025-06-05"
+      "added_at": "2026-06-05"
     },
     {
-      "id": 3,
-      "title": "Reddit Trend Monitor",
-      "description": "Monitor specific subreddits for keywords (your product, competitors, pain points), send daily digest",
-      "source": "Reddit",
-      "demand": 8,
-      "buildability": 8,
-      "value": 8,
-      "score": 8.0,
-      "status": "pending",
-      "added_at": "2025-06-05"
-    },
-    {
-      "id": 8,
+      "id": 4,
       "title": "Meeting Notes Formatter",
-      "description": "Paste raw meeting notes, Claude formats into action items + decisions + owners automatically",
+      "description": "Paste raw meeting notes, Claude formats into action items + decisions + owners",
       "source": "Reddit r/productivity",
+      "source_url": "",
       "demand": 8,
       "buildability": 9,
       "value": 7,
       "score": 8.0,
       "status": "pending",
-      "added_at": "2025-06-05"
+      "added_at": "2026-06-05"
     },
     {
-      "id": 6,
-      "title": "Inbox Zero Digest",
-      "description": "Summarize unread emails daily into 5 bullet points so you never miss anything important",
-      "source": "Reddit r/productivity",
-      "demand": 9,
-      "buildability": 6,
-      "value": 8,
-      "score": 7.9,
-      "status": "pending",
-      "added_at": "2025-06-05"
-    },
-    {
-      "id": 5,
-      "title": "Job Board Scraper",
-      "description": "Scrape jobs from HN 'Who is hiring' monthly posts, filter by stack/role, save to JSON",
-      "source": "HackerNews",
+      "id": 8,
+      "title": "Freelancer Testimonial Collector",
+      "description": "After a project ends, auto-send a testimonial request email, collect the response, format it nicely, save to a portfolio JSON file.",
+      "source": "IndieHackers",
+      "source_url": "https://www.indiehackers.com/post/users-say-they-want-automation-but-resist-it-when-it-happens-why-7d4d682fb5",
       "demand": 8,
       "buildability": 8,
       "value": 7,
       "score": 7.7,
       "status": "pending",
-      "added_at": "2025-06-05"
+      "added_at": "2026-06-05"
     },
     {
-      "id": 7,
-      "title": "Twitter/X AI Buzz Monitor",
-      "description": "Search X daily for trending AI startups/tools being discussed, save top 10 with engagement scores",
-      "source": "Your idea",
-      "demand": 8,
-      "buildability": 7,
-      "value": 8,
-      "score": 7.7,
-      "status": "pending",
-      "added_at": "2025-06-05"
-    },
-    {
-      "id": 4,
+      "id": 2,
       "title": "GitHub Stars Tracker",
-      "description": "Track GitHub repos by topic daily, alert when a new repo is trending in AI/automation space",
-      "source": "HackerNews",
+      "description": "Tracks trending AI/automation repos on GitHub daily",
+      "source": "Original",
+      "source_url": "",
       "demand": 7,
       "buildability": 9,
       "value": 7,
       "score": 7.6,
       "status": "built",
-      "added_at": "2025-06-05",
-      "script_path": "scripts/day1b_github_stars_tracker.py"
+      "script_path": "scripts/day1b_github_stars_tracker.py",
+      "added_at": "2026-06-05"
     }
   ]
 }

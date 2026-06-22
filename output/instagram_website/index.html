@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anushka Karmakar | Portfolio</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0e0e0e;
+      --surface: #1a1a1a;
+      --accent:  #e040fb;
+      --text:    #f0f0f0;
+      --muted:   #888;
+      --radius:  12px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 64px 24px 48px;
+      background: linear-gradient(160deg, #1a0026 0%, #0e0e0e 60%);
+    }
+    .avatar {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+    .hero h1 { font-size: 2.2rem; font-weight: 700; }
+    .handle  { color: var(--accent); font-size: 1rem; margin: 4px 0 16px; }
+
+    .stats {
+      display: flex; gap: 32px;
+      margin: 16px 0 24px;
+    }
+    .stat { text-align: center; }
+    .stat strong { display: block; font-size: 1.4rem; }
+    .stat span   { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      padding: 10px 24px;
+      border-radius: 24px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-outline { border: 1.5px solid var(--accent); color: var(--accent); }
+
+    /* ── About ── */
+    .about {
+      max-width: 680px; margin: 0 auto; padding: 56px 24px;
+    }
+    .about h2 { font-size: 1.5rem; margin-bottom: 16px; color: var(--accent); }
+    .about p  { color: #ccc; margin-bottom: 12px; }
+
+    /* ── Gallery ── */
+    .gallery-section {
+      padding: 40px 24px 64px;
+      background: var(--surface);
+    }
+    .gallery-section h2 {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 32px;
+      color: var(--accent);
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform .2s;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card img {
+      width: 100%; aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+    }
+    .card-body { padding: 12px 14px; }
+    .caption { font-size: 0.85rem; color: #bbb; margin-bottom: 8px; min-height: 36px; }
+    .likes { font-size: 0.8rem; color: var(--muted); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.6rem; }
+      .stats  { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <img class='avatar' src='https://i.imgur.com/placeholder-avatar.jpg' alt='Profile photo'>
+    <h1>Anushka Karmakar</h1>
+    <p class="handle">@anushka_karmakar._</p>
+
+    <div class="stats">
+      <div class="stat"><strong>48,700</strong><span>Followers</span></div>
+      <div class="stat"><strong>812</strong><span>Following</span></div>
+      <div class="stat"><strong>234</strong><span>Posts</span></div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://www.instagram.com/anushka_karmakar._/" target="_blank" rel="noopener">
+        Follow on Instagram
+      </a>
+      
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about">
+    <h2>About</h2>
+    <p>Hi, I'm Anushka — a dancer and choreographer who believes movement is the purest form of expression. I started dancing at the age of six and never looked back.<br><br>Over the years I've had the privilege of performing on some incredible stages and collaborating with artists who push me to grow every single day. My style blends classical training with contemporary flair — always evolving, always authentic.<br><br>When I'm not in the studio I'm teaching workshops and helping others discover the joy of movement. Follow along for behind-the-scenes content, routines, and a whole lot of good vibes.</p>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery-section">
+    <h2>Latest Posts</h2>
+    <div class="gallery">
+
+        <div class="card">
+          <a href="https://www.instagram.com/p/demo1/" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/dance1/600/600" alt="Post" loading="lazy" onerror="this.style.display='none'">
+          </a>
+          <div class="card-body">
+            <p class="caption">Practice makes perfect ✨ new routine dropping soon</p>
+            <span class="likes">&#9829; 3,210</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <a href="https://www.instagram.com/p/demo2/" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/dance2/600/600" alt="Post" loading="lazy" onerror="this.style.display='none'">
+          </a>
+          <div class="card-body">
+            <p class="caption">Behind the scenes of our latest collab 🎬</p>
+            <span class="likes">&#9829; 2,870</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <a href="https://www.instagram.com/p/demo3/" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/dance3/600/600" alt="Post" loading="lazy" onerror="this.style.display='none'">
+          </a>
+          <div class="card-body">
+            <p class="caption">Workshop day! So grateful for everyone who showed up 💜</p>
+            <span class="likes">&#9829; 4,120</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <a href="https://www.instagram.com/p/demo4/" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/dance4/600/600" alt="Post" loading="lazy" onerror="this.style.display='none'">
+          </a>
+          <div class="card-body">
+            <p class="caption">When the music hits different 🎵</p>
+            <span class="likes">&#9829; 5,640</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <a href="https://www.instagram.com/p/demo5/" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/dance5/600/600" alt="Post" loading="lazy" onerror="this.style.display='none'">
+          </a>
+          <div class="card-body">
+            <p class="caption">Golden hour vibes 🌅</p>
+            <span class="likes">&#9829; 3,980</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <a href="https://www.instagram.com/p/demo6/" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/dance6/600/600" alt="Post" loading="lazy" onerror="this.style.display='none'">
+          </a>
+          <div class="card-body">
+            <p class="caption">Bringing the energy every single day 🔥</p>
+            <span class="likes">&#9829; 4,450</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <a href="https://www.instagram.com/p/demo7/" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/dance7/600/600" alt="Post" loading="lazy" onerror="this.style.display='none'">
+          </a>
+          <div class="card-body">
+            <p class="caption">Thank you for 40K! This community means everything 🙏</p>
+            <span class="likes">&#9829; 7,200</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <a href="https://www.instagram.com/p/demo8/" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/dance8/600/600" alt="Post" loading="lazy" onerror="this.style.display='none'">
+          </a>
+          <div class="card-body">
+            <p class="caption">New month, new moves, same passion</p>
+            <span class="likes">&#9829; 2,910</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <a href="https://www.instagram.com/p/demo9/" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/dance9/600/600" alt="Post" loading="lazy" onerror="this.style.display='none'">
+          </a>
+          <div class="card-body">
+            <p class="caption">Studio sessions ❤️‍🔥</p>
+            <span class="likes">&#9829; 3,340</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <a href="https://www.instagram.com/p/demo10/" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/dance10/600/600" alt="Post" loading="lazy" onerror="this.style.display='none'">
+          </a>
+          <div class="card-body">
+            <p class="caption">Every day is an opportunity to get better</p>
+            <span class="likes">&#9829; 2,780</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <a href="https://www.instagram.com/p/demo11/" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/dance11/600/600" alt="Post" loading="lazy" onerror="this.style.display='none'">
+          </a>
+          <div class="card-body">
+            <p class="caption">Rehearsals for the big show 🎭</p>
+            <span class="likes">&#9829; 3,650</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <a href="https://www.instagram.com/p/demo12/" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/dance12/600/600" alt="Post" loading="lazy" onerror="this.style.display='none'">
+          </a>
+          <div class="card-body">
+            <p class="caption">Dance is the hidden language of the soul 💫</p>
+            <span class="likes">&#9829; 4,890</span>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      &copy; 2026 Anushka Karmakar &mdash;
+      <a href="https://www.instagram.com/anushka_karmakar._/" target="_blank" rel="noopener">@anushka_karmakar._</a>
+      &nbsp;|&nbsp; Built with Autogrind &times; Instagram to Website
+    </p>
+  </footer>
+
+</body>
+</html>
